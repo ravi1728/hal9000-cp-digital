@@ -33,7 +33,7 @@ def get_user_token(app_id, app_secret, access_token):
     return data.get('access_token')
 
 def save_user_token(user_token, cp_id):
-    create_or_update_row("cp_users", {'user_token': encrypt(user_token), 'cp_id': cp_id}, "cp_id")
+    create_or_update_row("cp_users_hal9000", {'user_token': encrypt(user_token), 'cp_id': cp_id}, ["cp_id"])
 
 def update_user_accessible_pages(user_token, cp_id):
     pages = get_user_accessible_pages(user_token)
@@ -47,8 +47,8 @@ def update_user_accessible_pages(user_token, cp_id):
                 'page_name': page_data['name'],
                 'page_token': encrypt(page_data['access_token']).decode("utf-8"),
             }
-            create_or_update_row("fb_pages", fb_page_dict, "page_id")
-            create_or_update_row("cp_pages", {'page_id': page_id, 'cp_id': cp_id}, "page_id")
+            create_or_update_row("fb_pages_hal9000", fb_page_dict, ["page_id"])
+            create_or_update_row("cp_pages_hal9000", {'page_id': page_id, 'cp_id': cp_id}, ["page_id", "cp_id"])
         except Exception as e:
             print(f"error adding fb page {page_id} - ", e)
 
