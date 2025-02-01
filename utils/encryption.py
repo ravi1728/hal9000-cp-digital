@@ -5,7 +5,7 @@ import base64
 from config import SECRET_KEY
 from config import IV
 
-from crypto.Cipher import AES
+from Crypto.Cipher import AES
 
 
 def encrypt(value):
