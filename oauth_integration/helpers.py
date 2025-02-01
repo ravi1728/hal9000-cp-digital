@@ -26,8 +26,7 @@ def get_access_token_from_fb(app_id, redirect_uri, app_secret, code):
 def get_user_token(app_id, app_secret, access_token):
     url = (
         f"{FB_GRAPH_URL}/{FBV}/oauth/access_token?"
-        f"grant_type=fb_exchange_token&client_id={
-            app_id}&client_secret={app_secret}"
+        f"grant_type=fb_exchange_token&client_id={app_id}&client_secret={app_secret}"
         f"&fb_exchange_token={access_token}")
     data = requests.get(url).json()
     return data.get('access_token')
@@ -80,8 +79,7 @@ def subscribe_app_to_page(
     page_token,
 ):
     post_url = (
-        f"{FB_GRAPH_URL}/{FBV}/{
-            str(page_id)}/subscribed_apps"
+        f"{FB_GRAPH_URL}/{FBV}/{str(page_id)}/subscribed_apps"
     )
     fields_to_subscribe = "feed"
     params = {
